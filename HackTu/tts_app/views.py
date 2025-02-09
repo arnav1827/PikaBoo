@@ -11,7 +11,7 @@ from django.http import FileResponse
 from pydub import AudioSegment
 
 # Key
-openai.api_key = "" # Add your OpenAI API key here
+openai.api_key = ""
 
 @csrf_exempt
 def speech_to_text(request):

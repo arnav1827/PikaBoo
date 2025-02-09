@@ -4,20 +4,96 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Masterly - AI Accessibility</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1e1e2f;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        h2 {
+            color: #ffcc00;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #292945;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+        }
+        button {
+            background-color: #ffcc00;
+            color: black;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            transition: 0.3s;
+        }
+        button:hover {
+            background-color: #ff9900;
+        }
+        input {
+            display: none;
+        }
+        label {
+            background-color: #00ccff;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            display: inline-block;
+        }
+        label:hover {
+            background-color: #0099cc;
+        }
+        .icon {
+            font-size: 40px;
+            margin: 15px;
+            color: #ffcc00;
+        }
+        #transcription {
+            background: #333355;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        #audioPlayer {
+            margin-top: 10px;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
 
-    <h2>Speech-to-Text (Whisper AI)</h2>
-    <input type="file" id="audioInput" accept="audio/*">
-    <button onclick="uploadAudio()">Convert Speech to Text</button>
-    <p id="transcription"></p>
+    <div class="container">
+        <h2><i class="fas fa-microphone icon"></i> Speech-to-Text (Whisper AI)</h2>
+        <label for="audioInput"><i class="fas fa-upload"></i> Upload Audio</label>
+        <input type="file" id="audioInput" accept="audio/*">
+        <button onclick="uploadAudio()"><i class="fas fa-play"></i> Convert Speech to Text</button>
+        <p id="transcription">Transcription will appear here...</p>
+    </div>
 
-    <h2>Text-to-Speech (TTS)</h2>
-    <button onclick="playTTS()">Read Aloud</button>
+    <div class="container">
+        <h2><i class="fas fa-volume-up icon"></i> Text-to-Speech (TTS)</h2>
+        <button onclick="playTTS()"><i class="fas fa-headphones"></i> Read Aloud</button>
+        <audio id="audioPlayer" controls></audio>
+    </div>
 
     <script>
         function uploadAudio() {
             let fileInput = document.getElementById("audioInput").files[0];
+            if (!fileInput) {
+                alert("Please select an audio file.");
+                return;
+            }
+
             let formData = new FormData();
             formData.append("audio_file", fileInput);
 
@@ -28,11 +104,13 @@
             .then(response => response.json())
             .then(data => {
                 document.getElementById("transcription").innerText = "Transcription: " + data.transcription;
-            });
+            })
+            .catch(error => console.error("Error:", error));
         }
 
         function playTTS() {
-            let audio = new Audio("/tts/text-to-speech/");
+            let audio = document.getElementById("audioPlayer");
+            audio.src = "/tts/text-to-speech/";
             audio.play();
         }
     </script>

@@ -1,12 +1,26 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Master's Preparation Portal</title>
-  <link href="{% static css/masterdashboard.css %}" rel="stylesheet">
+  <link href="{% static 'css/masterdashboard.css' %}" rel="stylesheet">
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-  
+  <style>
+    button.btn-link {
+      all: unset;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      font-size: 18px; /* Increased font size */
+    }
+
+    .nav-links li {
+      margin-bottom: 15px; /* Added gap between items */
+    }
+  </style>
 </head>
 <body>
 
@@ -17,46 +31,52 @@
     </div>
     <ul class="nav-links">
       <li class="active">
-        <a href="#" data-page="dashboard.html">
+        <button class="btn-link">
+        <a href="/dashboard/">
           <i class='bx bxs-dashboard'></i>
-          <span>Dashboard</span>
-        </a>
+          <span>Dashboard</span></a>
+        </button>
+        
       </li>
       <li>
-        <a href="#" data-page="profile_masters.html">
+        <button onclick="location.href='/profile'" class="btn-link"><a href = "/profile/">
           <i class='bx bxs-user'></i>
-          <span>Profile</span>
-        </a>
+          <span>Profile</span></a>
+        </button>
       </li>
       <li>
-        <a href="#" data-page="profile_masters.html">
+        <button onclick="location.href='/assistance'" class="btn-link"><a href="/assistance/">
           <i class='bx bxs-bot'></i>
-          <span>Personal Assistance</span>
-        </a>
+          <span>Personal Assistance</span></a>
+        </button>
+        
       </li>
       <li>
-        <a href="/profile_masters.html" data-page="profile_masters.html">
+        <button class="btn-link"><a href="/profile/">
           <i class='bx bxs-file'></i>
-          <span>Test series</span>
-        </a>
+          <span>Test series</span></a>
+        </button>
+        
       </li>
       <li>
-        <a href="/reports.html" data-page="reports.html">
+        <button onclick="location.href='/reports'" class="btn-link"><a href="/reports/">
           <i class='bx bxs-pie-chart-alt-2'></i>
-          <span>Reports</span>
-        </a>
+          <span>Reports</span></a>
+        </button>
       </li>
       <li>
-        <a href="/analysis.html" data-page="analysisJEE.html">
+        <button onclick="location.href='/analysis'" class="btn-link"><a href="/analysis/">
           <i class='bx bxs-bar-chart-alt-2'></i>
-          <span>Analysis</span>
-        </a>
+          <span>Analysis</span></a>
+        </button>
+        
       </li>
       <li>
-        <a href="#settings">
+        <button class="btn-link"><a href="#">
           <i class='bx bxs-cog'></i>
-          <span>Settings</span>
-        </a>
+          <span>Settings</span></a>
+        </button>
+        
       </li>
     </ul>
   </div>
@@ -70,7 +90,7 @@
       <div class="user-info">
         
         <div class="user">
-          <img src="./user.jpg" alt="User">
+          <img src="{% static 'images/user.jpg' %}" alt="User">
           <span>Samarth Nagpal</span>
           <i class='bx bx-chevron-down'></i>
         </div>
@@ -261,6 +281,6 @@
     </div>
   </div>
   <script src="https://public.tableau.com/javascripts/api/tableau-2.min.js" async defer></script>
-  <script src="./static/js/masterdashboard.js"></script>
+  <script src="{% static 'js/masterdashboard.js' %}"></script>
 </body>
 </html>

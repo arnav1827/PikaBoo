@@ -1,5 +1,6 @@
 from django.shortcuts import render
 import math
+from django.http import HttpResponseRedirect
 from django.contrib import messages
 
 
@@ -20,3 +21,15 @@ def master(request):
 
 def masterdashboard(request):
     return render(request, "dashboard.html")
+
+def profile(request):
+    return render(request, "profile_masters.html")
+
+def assistance(request):
+    return HttpResponseRedirect("https://118d6f98cc9818feba.gradio.live")
+
+def reports(request):
+    return render(request, "reports.html")
+
+def analysis(request):
+    return render(request, "analysis.html")
