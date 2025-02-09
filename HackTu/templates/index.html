@@ -1,0 +1,320 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Examentor - Your Gateway to Master's Success</title>
+    <link rel="stylesheet" href="./static/css/styles.css" />
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
+  </head>
+  <body>
+    {% for message in messages %}
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+      <div
+        class="toast align-items-center fade"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+      >
+        <div class="d-flex">
+          <div class="toast-body">{{message}}</div>
+          <button
+            type="button"
+            class="btn-close me-2 m-auto"
+            data-bs-dismiss="toast"
+            aria-label="Close"
+          ></button>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    <header class="header">
+      <nav class="nav">
+        <div class="logo">
+          <i data-lucide="graduation-cap"></i>
+          <span>Examentor</span>
+        </div>
+        <div class="nav-buttons">
+          <a href = "/about/"><button
+            class="btn-secondary"
+          >
+            About Us
+          </button></a>
+          <button
+            class="btn-secondary"
+            onclick="scrollToSection('test-series')"
+          >
+            Test Series
+          </button>
+          <a href = "/contact/"><button class="btn-secondary">
+            Contact Us
+          </button></a>
+        </div>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="container hero-content">
+        <div class="hero-text">
+          <h1>Your Gateway to Master's Success</h1>
+          <p>
+            Examentor is your dedicated companion for master's entrance exam
+            preparation, crafted to make studying smarter, focused, and more
+            effective. With a streamlined design and data-driven insights,
+            Examentor helps you sharpen your skills, track your progress, and
+            stay motivated—all in one place.
+          </p>
+          <div class="hero-buttons">
+            <a href="/jee/" class="btn-white">
+              Explore JEE
+              <i data-lucide="arrow-right"></i>
+            </a>
+            <a class="btn-outline " href = "/master/">
+              Explore M.Tech
+              <i data-lucide="arrow-right"></i>
+            </a>
+          </div>
+        </div>
+        <div class="hero-image">
+          <img
+            src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+            alt="Students studying"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="features">
+      <div class="container">
+        <h2 class="section-title">Why Choose Examentor?</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <i data-lucide="target"></i>
+            <h3>Personalized Practice</h3>
+            <p>
+              Adaptive test series and insights tailored to your strengths and
+              weaknesses, ensuring efficient, focused preparation.
+            </p>
+          </div>
+          <div class="feature-card">
+            <i data-lucide="line-chart"></i>
+            <h3>Progress Tracking</h3>
+            <p>
+              Detailed analytics and performance summaries help you monitor
+              improvement and stay on top of your goals.
+            </p>
+          </div>
+          <div class="feature-card">
+            <i data-lucide="message-circle"></i>
+            <h3>Instant Support</h3>
+            <p>
+              An interactive chatbot provides immediate query resolution and
+              personalized study guidance, keeping you motivated and informed.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="dashboard-preview">
+      <div class="container">
+        <h2 class="section-title">Your Personalized Dashboard</h2>
+        <div class="dashboard-features">
+          <div class="dashboard-text">
+            <h3>Everything You Need in One Place</h3>
+            <ul class="dashboard-list">
+              <li>
+                <i data-lucide="check-circle"></i>Real-time performance
+                analytics
+              </li>
+              <li><i data-lucide="check-circle"></i>Customized study plans</li>
+              <li>
+                <i data-lucide="check-circle"></i>Progress tracking with
+                detailed insights
+              </li>
+              <li>
+                <i data-lucide="check-circle"></i>Practice test history and
+                analysis
+              </li>
+              <li>
+                <i data-lucide="check-circle"></i>Personalized recommendations
+              </li>
+            </ul>
+          </div>
+          <div class="dashboard-image">
+            <img src="./static/images/dashboard1.png" alt="Dashboard Preview" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="test-series" id="test-series">
+      <div class="container">
+        <h2 class="section-title">Comprehensive Test Series</h2>
+        <div class="test-series-grid">
+          <div class="test-card">
+            <div class="test-card-image">
+              <img
+                src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                alt="Practice Tests"
+              />
+            </div>
+            <div class="test-card-content">
+              <h3>Practice Tests</h3>
+              <p>
+                Build confidence with topic-wise practice tests designed to
+                strengthen your fundamentals.
+              </p>
+              <ul>
+                <li>500+ practice questions</li>
+                <li>Detailed solutions</li>
+                <li>Performance analytics</li>
+              </ul>
+              <button class="btn-primary">Start Practice</button>
+            </div>
+          </div>
+          <div class="test-card featured">
+            <div class="test-card-image">
+              <img
+                src="https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                alt="Mock Tests"
+              />
+            </div>
+            <div class="test-card-content">
+              <h3>Full Mock Tests</h3>
+              <p>
+                Experience the real exam environment with our carefully crafted
+                mock tests.
+              </p>
+              <ul>
+                <li>Previous year patterns</li>
+                <li>Timed sessions</li>
+                <li>Detailed analysis</li>
+              </ul>
+              <button class="btn-primary">Take Mock Test</button>
+            </div>
+          </div>
+          <div class="test-card">
+            <div class="test-card-image">
+              <img
+                src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                alt="Subject Tests"
+              />
+            </div>
+            <div class="test-card-content">
+              <h3>Subject Tests</h3>
+              <p>
+                Master individual subjects with our comprehensive subject-wise
+                test series.
+              </p>
+              <ul>
+                <li>Subject-specific focus</li>
+                <li>Conceptual clarity</li>
+                <li>Progress tracking</li>
+              </ul>
+              <button class="btn-primary">Explore Tests</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="testimonials">
+      <div class="container">
+        <h2 class="section-title">What Our Students Say</h2>
+        <div class="swiper-container">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div class="testimonial-card">
+                <img src="./static/images/left.jpeg" alt="Student 1" />
+                <h4>Mohan aggarwal</h4>
+                <p class="college">IIT Delhi</p>
+                <p class="testimony">
+                  "Examentor helped me structure my preparation and track my
+                  progress effectively. The personalized insights were
+                  game-changing!"
+                </p>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="testimonial-card">
+                <img src="./static/images/middle.jpg" alt="Student 2" />
+                <h4>Rahul Sharma</h4>
+                <p class="college">MAIT</p>
+                <p class="testimony">
+                  "The adaptive practice questions and detailed analytics helped
+                  me identify and improve my weak areas."
+                </p>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="testimonial-card">
+                <img src="./static/images/right.jpg" alt="Student 3" />
+                <h4>Priya Patel</h4>
+                <p class="college">NIT Chennai</p>
+                <p class="testimony">
+                  "The mock tests were incredibly helpful in building my
+                  confidence and time management skills."
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer" id="contact">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h4>About Examentor</h4>
+            <p>
+              Your trusted partner in master's entrance exam preparation,
+              helping students achieve their academic goals since 2023.
+            </p>
+          </div>
+          <div class="footer-section">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Courses</a></li>
+              <li><a href="#">Test Series</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>Contact Us</h4>
+            <ul>
+              <li><i data-lucide="mail"></i> support@Examentor.com</li>
+              <li><i data-lucide="phone"></i> +91 1234567890</li>
+              <li><i data-lucide="map-pin"></i>New Delhi, India</li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>Follow Us</h4>
+            <div class="social-links">
+              <a href="#"><i data-lucide="facebook"></i></a>
+              <a href="#"><i data-lucide="twitter"></i></a>
+              <a href="#"><i data-lucide="instagram"></i></a>
+              <a href="#"><i data-lucide="linkedin"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 Examentor. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="./static/js/script.js"></script>
+  </body>
+</html>

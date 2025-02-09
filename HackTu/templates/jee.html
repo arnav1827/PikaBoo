@@ -1,0 +1,193 @@
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Examentor - Your Path to Success</title>
+    <link rel="stylesheet" href="./static/css/jee1.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="logo">
+            <i data-lucide="graduation-cap"></i>
+            <span>Examentor</span>
+          </div>     
+        
+        <div class="nav-links">
+          <button class="nav-link" href = "/">Home</button>
+          <button onclick="scrollToSection('pricing')" class="nav-link">Pricing</button>
+          <button class="nav-link" href = "/contact">Contact</button>
+          <div class="auth-buttons">
+            <a href = "/auth/signin" class = "btn"><button class="login-btn">Log In</button></a>
+            <a href = "/auth/signup" class = "btn"><button class="signup-btn">Sign Up</button></a>
+          </div>
+        </div>
+
+        <!-- <button class="mobile-menu-btn" onclick="toggleMenu()">
+          <i data-lucide="menu" id="menuIcon"></i>
+          <i data-lucide="x" id="closeIcon" class="hidden"></i>
+        </button> -->
+      </div>
+<!-- 
+      <div class="mobile-menu hidden" id="mobileMenu">
+        <button onclick="scrollToSection('features')" class="mobile-link">Features</button>
+        <button onclick="scrollToSection('pricing')" class="mobile-link">Pricing</button>
+        <button onclick="scrollToSection('contact')" class="mobile-link">Contact</button>
+        <button onclick="openModal('loginModal')" class="mobile-link">Log In</button>
+        <button onclick="openModal('signupModal')" class="mobile-link">Sign Up</button>
+      </div> -->
+    </nav>
+
+    <div class="hero">
+      <div class="hero-content">
+        <h1>Ace Your Exams with Examentor!</h1>
+        <p>Your AI-Powered Personal Mentor for JEE, Offering Smart Study Plans, Real-Time Doubt Solving, and Adaptive Test Series to Boost Your Rank!</p>
+        <button onclick="scrollToSection('contact')" class="cta-btn">Get Started</button>
+      </div>
+    </div>
+
+    <div id="features" class="features">
+      <div class="container">
+        <h2>Features That Make You More Productive</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <i data-lucide="book-open"></i>
+            <h3>Test Series</h3>
+            <p>Comprehensive mock tests aligned with the latest JEE patterns</p>
+          </div>
+          <div class="feature-card">
+            <i data-lucide="bar-chart-3"></i>
+            <h3>Dashboard</h3>
+            <p>Track your progress with detailed analytics and insights</p>
+          </div>
+          <div class="feature-card">
+            <i data-lucide="brain"></i>
+            <h3>Protocoling System</h3>
+            <p>Advanced learning protocols tailored to your needs</p>
+          </div>
+          <div class="feature-card">
+            <i data-lucide="message-square"></i>
+            <h3>Whisper AI</h3>
+            <p>24/7 AI-powered doubt clearing assistance</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="pricing" class="pricing">
+      <div class="container">
+        <h2>Choose Your Plan</h2>
+        <div class="pricing-grid">
+          <div class="price-card">
+            <h3>Basic</h3>
+            <p class="price">₹999<span>/month</span></p>
+            <ul>
+              <li><i data-lucide="check-circle-2"></i> Basic Test Series</li>
+              <li><i data-lucide="check-circle-2"></i> Dashboard Access</li>
+              <li><i data-lucide="check-circle-2"></i> Email Support</li>
+            </ul>
+            <button onclick="openModal('signupModal')" class="outline-btn">Get Started</button>
+          </div>
+
+          <div class="price-card popular">
+            <div class="popular-badge">Popular</div>
+            <h3>Pro</h3>
+            <p class="price">₹1999<span>/month</span></p>
+            <ul>
+              <li><i data-lucide="check-circle-2"></i> Advanced Test Series</li>
+              <li><i data-lucide="check-circle-2"></i> Full Dashboard Access</li>
+              <li><i data-lucide="check-circle-2"></i> Priority Support</li>
+              <li><i data-lucide="check-circle-2"></i> AI-Powered Analysis</li>
+            </ul>
+            <button onclick="openModal('signupModal')" class="filled-btn">Get Started</button>
+          </div>
+
+          <!-- <div class="price-card">
+            <h3>Enterprise</h3>
+            <p class="price">₹3999<span>/month</span></p>
+            <ul>
+              <li><i data-lucide="check-circle-2"></i> Complete Access</li>
+              <li><i data-lucide="check-circle-2"></i> Dedicated Mentor</li>
+              <li><i data-lucide="check-circle-2"></i> 24/7 Support</li>
+              <li><i data-lucide="check-circle-2"></i> Custom Study Plans</li>
+            </ul>
+            <button onclick="openModal('signupModal')" class="outline-btn">Contact Sales</button>
+          </div> -->
+        </div>
+      </div>
+    </div>
+
+    <div id="faq" class="faq">
+      <div class="container">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(0)">
+              <span>How does Examentor's AI help in JEE preparation?</span>
+              <i data-lucide="chevron-down" class="faq-icon"></i>
+            </button>
+            <div class="faq-answer">
+              Our AI system analyzes your performance patterns, identifies knowledge gaps, and creates personalized study plans. It adapts to your learning style and progress.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(1)">
+              <span>What makes Examentor different from other platforms?</span>
+              <i data-lucide="chevron-down" class="faq-icon"></i>
+            </button>
+            <div class="faq-answer">
+              Examentor combines advanced AI technology with comprehensive study materials and real-time performance tracking to provide a truly personalized learning experience.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(2)">
+              <span>How often is the content updated?</span>
+              <i data-lucide="chevron-down" class="faq-icon"></i>
+            </button>
+            <div class="faq-answer">
+              Our content is updated regularly to align with the latest JEE patterns and syllabus changes. We also incorporate user feedback for continuous improvement.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-section">
+            <h3>Examentor</h3>
+            <p>Your trusted partner in JEE and engineering exam preparation.</p>
+          </div>
+          <div class="footer-section">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><span onclick="scrollToSection('features')" class="foot-link">Features</span></li>
+              <li><span onclick="scrollToSection('pricing')" class="foot-link">Pricing</span></li>
+              <li><span onclick="window.location.href='contact.html'" class="foot-link">Contact</span></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>Contact</h4>
+            <p>support@Examentor.com</p>
+            <p>+91 123 456 7890</p>
+          </div>
+          <div class="footer-section">
+            <h4>Follow Us</h4>
+            <div class="social-links">
+              <a href="#"><i data-lucide="linkedin"></i></a>
+              <a href="#"><i data-lucide="twitter"></i></a>
+              <a href="#"><i data-lucide="instagram"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2025 Examentor. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+    <script src="./static/js/jee1.js"></script>
+  </body>
+</html>

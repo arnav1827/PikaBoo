@@ -1,0 +1,685 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Profile Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/@lucide/web@latest"></script>
+    <style>
+      .profile-image {
+        animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        position: relative;
+      }
+
+      @keyframes pulse {
+        0%, 100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+      }
+
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+      }
+
+      .modal.active {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+
+      .edit-button {
+        display: flex;
+        align-items: center;
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.375rem;
+        transition: background-color 0.2s;
+      }
+
+      .edit-button:hover {
+        background-color: rgba(255, 111, 60, 0.1);
+      }
+
+      .edit-button i {
+        width: 1rem;
+        height: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="min-h-screen bg-[#FFF8F3]">
+      <header class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 py-6">
+          <h1 class="text-3xl font-bold text-gray-900">Student Profile Dashboard</h1>
+        </div>
+      </header>
+
+      <main class="max-w-7xl mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div class="lg:col-span-1 space-y-6">
+            <div class="bg-white rounded-xl shadow-md p-6">
+              <div class="section-header">
+                <div class="flex items-center space-x-4">
+                  <div class="relative">
+                    <img
+                      src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400"
+                      alt="Profile"
+                      class="profile-image w-24 h-24 rounded-full object-cover border-4 border-[#FF6F3C]"
+                    />
+                    <button 
+                      onclick="openModal('profilePicModal')"
+                      class="absolute bottom-0 right-0 bg-white rounded-full p-1 shadow-lg">
+                      <i data-lucide="camera" class="w-4 h-4 text-[#FF6F3C]"></i>
+                    </button>
+                  </div>
+                  <div>
+                    <h2 class="text-2xl font-bold">Sarah Johnson</h2>
+                    <p class="text-gray-600">Student ID: 2024CS1234</p>
+                  </div>
+                </div>
+                <button 
+                  onclick="openModal('personalInfoModal')" 
+                  class="edit-button text-[#FF6F3C]">
+                  <i data-lucide="edit"></i>
+                </button>
+              </div>
+              
+              <div class="space-y-3">
+                <div class="flex items-center space-x-3 text-gray-700">
+                  <i data-lucide="mail" class="text-[#FF6F3C]"></i>
+                  <span>sarah.johnson@email.com</span>
+                </div>
+                <div class="flex items-center space-x-3 text-gray-700">
+                  <i data-lucide="phone" class="text-[#FF6F3C]"></i>
+                  <span>+1 (555) 123-4567</span>
+                </div>
+                <div class="flex items-center space-x-3 text-gray-700">
+                  <i data-lucide="map-pin" class="text-[#FF6F3C]"></i>
+                  <span>San Francisco, United States</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-md p-6">
+              <div class="section-header">
+                <h3 class="text-xl font-semibold flex items-center">
+                  <i data-lucide="graduation-cap" class="mr-2 text-[#27AE60]"></i>
+                  Academic Details
+                </h3>
+                <button 
+                  onclick="openModal('academicModal')" 
+                  class="edit-button text-[#27AE60]">
+                  <i data-lucide="edit"></i>
+                </button>
+              </div>
+              <div class="space-y-4">
+                <div>
+                  <p class="text-sm text-gray-500">Degree</p>
+                  <p class="font-medium">B.Tech in Computer Science</p>
+                </div>
+                <div>
+                  <p class="text-sm text-gray-500">University</p>
+                  <p class="font-medium">Stanford University</p>
+                </div>
+                <div>
+                  <p class="text-sm text-gray-500">CGPA</p>
+                  <p class="font-medium">3.8/4.0</p>
+                </div>
+                <div>
+                  <p class="text-sm text-gray-500">Graduation Year</p>
+                  <p class="font-medium">2024</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-md p-6">
+              <div class="section-header">
+                <h3 class="text-xl font-semibold flex items-center">
+                  <i data-lucide="award" class="mr-2 text-[#3498DB]"></i>
+                  Test Scores
+                </h3>
+                <button 
+                  onclick="openModal('testScoresModal')" 
+                  class="edit-button text-[#3498DB]">
+                  <i data-lucide="edit"></i>
+                </button>
+              </div>
+              <div class="space-y-4">
+                <div class="flex justify-between items-center">
+                  <span>GRE</span>
+                  <span class="font-semibold">325/340</span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span>TOEFL</span>
+                  <span class="font-semibold">108/120</span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span>GATE</span>
+                  <span class="font-semibold">99.8 percentile</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-1 space-y-6">
+            <div class="bg-white rounded-xl shadow-md p-6">
+              <div class="section-header">
+                <h3 class="text-xl font-semibold flex items-center">
+                  <i data-lucide="book-open" class="mr-2 text-[#6C5CE7]"></i>
+                  Research & Publications
+                </h3>
+                <button 
+                  onclick="openModal('researchModal')" 
+                  class="edit-button text-[#6C5CE7]">
+                  <i data-lucide="edit"></i>
+                </button>
+              </div>
+              <div class="space-y-4">
+                <div class="border-l-4 border-[#6C5CE7] pl-4">
+                  <h4 class="font-medium">Machine Learning in Healthcare</h4>
+                  <p class="text-sm text-gray-600">Published in IEEE Conference 2023</p>
+                  <a href="#" class="text-[#6C5CE7] text-sm flex items-center mt-1">
+                    View Publication <i data-lucide="external-link" class="ml-1 w-4 h-4"></i>
+                  </a>
+                </div>
+                <div class="border-l-4 border-[#6C5CE7] pl-4">
+                  <h4 class="font-medium">Blockchain in Education</h4>
+                  <p class="text-sm text-gray-600">Under Review - ACM Journal</p>
+                  <a href="#" class="text-[#6C5CE7] text-sm flex items-center mt-1">
+                    View Preprint <i data-lucide="external-link" class="ml-1 w-4 h-4"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-md p-6">
+              <div class="section-header">
+                <h3 class="text-xl font-semibold flex items-center">
+                  <i data-lucide="code" class="mr-2 text-[#FF6F3C]"></i>
+                  Academic Projects
+                </h3>
+                <button 
+                  onclick="openModal('projectsModal')" 
+                  class="edit-button text-[#FF6F3C]">
+                  <i data-lucide="edit"></i>
+                </button>
+              </div>
+              <div class="space-y-4">
+                <div>
+                  <h4 class="font-medium">AI-Powered Health Monitoring System</h4>
+                  <p class="text-sm text-gray-600 mt-1">
+                    Developed a real-time health monitoring system using Python and TensorFlow
+                  </p>
+                  <div class="flex flex-wrap gap-2 mt-2">
+                    <span class="px-2 py-1 bg-[#FF6F3C]/10 text-[#FF6F3C] rounded-full text-xs">Python</span>
+                    <span class="px-2 py-1 bg-[#FF6F3C]/10 text-[#FF6F3C] rounded-full text-xs">TensorFlow</span>
+                    <span class="px-2 py-1 bg-[#FF6F3C]/10 text-[#FF6F3C] rounded-full text-xs">React</span>
+                  </div>
+                </div>
+                <div>
+                  <h4 class="font-medium">Smart City Traffic Management</h4>
+                  <p class="text-sm text-gray-600 mt-1">
+                    IoT-based traffic management system with real-time analytics
+                  </p>
+                  <div class="flex flex-wrap gap-2 mt-2">
+                    <span class="px-2 py-1 bg-[#FF6F3C]/10 text-[#FF6F3C] rounded-full text-xs">IoT</span>
+                    <span class="px-2 py-1 bg-[#FF6F3C]/10 text-[#FF6F3C] rounded-full text-xs">Node.js</span>
+                    <span class="px-2 py-1 bg-[#FF6F3C]/10 text-[#FF6F3C] rounded-full text-xs">MongoDB</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-md p-6">
+              <div class="section-header">
+                <h3 class="text-xl font-semibold flex items-center">
+                  <i data-lucide="school" class="mr-2 text-[#6C5CE7]"></i>
+                  Target Universities
+                </h3>
+                <button 
+                  onclick="openModal('universitiesModal')" 
+                  class="edit-button text-[#6C5CE7]">
+                  <i data-lucide="edit"></i>
+                </button>
+              </div>
+              <div class="space-y-4">
+                <div class="flex items-center justify-between p-2 rounded bg-[#6C5CE7]/5">
+                  <div>
+                    <h4 class="font-medium">Stanford University</h4>
+                    <p class="text-sm text-gray-600">MS in Computer Science</p>
+                  </div>
+                  <span class="px-2 py-1 bg-[#27AE60]/20 text-[#27AE60] rounded text-xs">Applied</span>
+                </div>
+                <div class="flex items-center justify-between p-2 rounded bg-[#6C5CE7]/5">
+                  <div>
+                    <h4 class="font-medium">MIT</h4>
+                    <p class="text-sm text-gray-600">MS in AI</p>
+                  </div>
+                  <span class="px-2 py-1 bg-[#FF6F3C]/20 text-[#FF6F3C] rounded text-xs">Deadline: Dec 15</span>
+                </div>
+                <div class="flex items-center justify-between p-2 rounded bg-[#6C5CE7]/5">
+                  <div>
+                    <h4 class="font-medium">UC Berkeley</h4>
+                    <p class="text-sm text-gray-600">MS in Data Science</p>
+                  </div>
+                  <span class="px-2 py-1 bg-[#3498DB]/20 text-[#3498DB] rounded text-xs">In Progress</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <div id="profilePicModal" class="modal">
+      <div class="bg-white rounded-lg p-6 max-w-md w-full mx-4">
+        <div class="flex justify-between items-center mb-4">
+          <h3 class="text-lg font-semibold">Update Profile Picture</h3>
+          <button onclick="closeModal('profilePicModal')" class="text-gray-500 hover:text-gray-700">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+        <div class="space-y-4">
+          <div class="flex items-center justify-center">
+            <img
+              src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400"
+              alt="Current Profile"
+              class="w-32 h-32 rounded-full object-cover border-4 border-[#FF6F3C]"
+            />
+          </div>
+          <div class="flex items-center justify-center">
+            <label class="cursor-pointer bg-[#FF6F3C] text-white px-4 py-2 rounded-lg hover:bg-[#FF6F3C]/90">
+              <span class="flex items-center">
+                <i data-lucide="upload" class="w-4 h-4 mr-2"></i>
+                Upload New Picture
+              </span>
+              <input type="file" class="hidden" accept="image/*" onchange="handleImageUpload(event)" />
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="personalInfoModal" class="modal">
+      <div class="bg-white rounded-lg p-6 max-w-md w-full mx-4">
+        <div class="flex justify-between items-center mb-4">
+          <h3 class="text-lg font-semibold">Edit Personal Information</h3>
+          <button onclick="closeModal('personalInfoModal')" class="text-gray-500 hover:text-gray-700">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+        <form class="space-y-4" onsubmit="handleFormSubmit(event, 'personalInfo')">
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Full Name</label>
+            <input type="text" name="fullName" value="Sarah Johnson" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#FF6F3C] focus:ring focus:ring-[#FF6F3C] focus:ring-opacity-50" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Email</label>
+            <input type="email" name="email" value="sarah.johnson@email.com" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#FF6F3C] focus:ring focus:ring-[#FF6F3C] focus:ring-opacity-50" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Phone</label>
+            <input type="tel" name="phone" value="+1 (555) 123-4567" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#FF6F3C] focus:ring focus:ring-[#FF6F3C] focus:ring-opacity-50" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Location</label>
+            <input type="text" name="location" value="San Francisco, United States" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#FF6F3C] focus:ring focus:ring-[#FF6F3C] focus:ring-opacity-50" />
+          </div>
+          <div class="flex justify-end space-x-3">
+            <button type="button" onclick="closeModal('personalInfoModal')" class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50">
+              Cancel
+            </button>
+            <button type="submit" class="px-4 py-2 bg-[#FF6F3C] text-white rounded-md hover:bg-[#FF6F3C]/90">
+              Save Changes
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="academicModal" class="modal">
+      <div class="bg-white rounded-lg p-6 max-w-md w-full mx-4">
+        <div class="flex justify-between items-center mb-4">
+          <h3 class="text-lg font-semibold">Edit Academic Details</h3>
+          <button onclick="closeModal('academicModal')" class="text-gray-500 hover:text-gray-700">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+        <form class="space-y-4" onsubmit="handleFormSubmit(event, 'academic')">
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Degree</label>
+            <input type="text" name="degree" value="B.Tech in Computer Science" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#27AE60] focus:ring focus:ring-[#27AE60] focus:ring-opacity-50" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700">University</label>
+            <input type="text" name="university" value="Stanford University" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#27AE60] focus:ring focus:ring-[#27AE60] focus:ring-opacity-50" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700">CGPA</label>
+            <input type="text" name="cgpa" value="3.8/4.0" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#27AE60] focus:ring focus:ring-[#27AE60] focus:ring-opacity-50" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Graduation Year</label>
+            <input type="text" name="graduationYear" value="2024" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#27AE60] focus:ring focus:ring-[#27AE60] focus:ring-opacity-50" />
+          </div>
+          <div class="flex justify-end space-x-3">
+            <button type="button" onclick="closeModal('academicModal')" class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50">
+              Cancel
+            </button>
+            <button type="submit" class="px-4 py-2 bg-[#27AE60] text-white rounded-md hover:bg-[#27AE60]/90">
+              Save Changes
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="testScoresModal" class="modal">
+      <div class="bg-white rounded-lg p-6 max-w-md w-full mx-4">
+        <div class="flex justify-between items-center mb-4">
+          <h3 class="text-lg font-semibold">Edit Test Scores</h3>
+          <button onclick="closeModal('testScoresModal')" class="text-gray-500 hover:text-gray-700">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+        <form class="space-y-4" onsubmit="handleFormSubmit(event, 'testScores')">
+          <div>
+            <label class="block text-sm font-medium text-gray-700">GRE Score</label>
+            <input type="text" name="gre" value="325/340" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#3498DB] focus:ring focus:ring-[#3498DB] focus:ring-opacity-50" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700">TOEFL Score</label>
+            <input type="text" name="toefl" value="108/120" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#3498DB] focus:ring focus:ring-[#3498DB] focus:ring-opacity-50" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700">GATE Score</label>
+            <input type="text" name="gate" value="99.8 percentile" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#3498DB] focus:ring focus:ring-[#3498DB] focus:ring-opacity-50" />
+          </div>
+          <div class="flex justify-end space-x-3">
+            <button type="button" onclick="closeModal('testScoresModal')" class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50">
+              Cancel
+            </button>
+            <button type="submit" class="px-4 py-2 bg-[#3498DB] text-white rounded-md hover:bg-[#3498DB]/90">
+              Save Changes
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    
+    <div id="researchModal" class="modal">
+      <div class="bg-white rounded-lg p-6 max-w-md w-full mx-4">
+        <div class="flex justify-between items-center mb-4">
+          <h3 class="text-lg font-semibold">Edit Research & Publications</h3>
+          <button onclick="closeModal('researchModal')" class="text-gray-500 hover:text-gray-700">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+        <form class="space-y-4" onsubmit="handleFormSubmit(event, 'research')">
+          <div class="space-y-4">
+            <div class="border-l-4 border-[#6C5CE7] pl-4">
+              <input type="text" name="title1" value="Machine Learning in Healthcare" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#6C5CE7] focus:ring focus:ring-[#6C5CE7] focus:ring-opacity-50" />
+              <input type="text" name="publication1" value="Published in IEEE Conference 2023" class="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#6C5CE7] focus:ring focus:ring-[#6C5CE7] focus:ring-opacity-50" />
+              <input type="url" name="link1" value="#" placeholder="Publication URL" class="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#6C5CE7] focus:ring focus:ring-[#6C5CE7] focus:ring-opacity-50" />
+            </div>
+            <div class="border-l-4 border-[#6C5CE7] pl-4">
+              <input type="text" name="title2" value="Blockchain in Education" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#6C5CE7] focus:ring focus:ring-[#6C5CE7] focus:ring-opacity-50" />
+              <input type="text" name="publication2" value="Under Review - ACM Journal" class="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#6C5CE7] focus:ring focus:ring-[#6C5CE7] focus:ring-opacity-50" />
+              <input type="url" name="link2" value="#" placeholder="Preprint URL" class="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#6C5CE7] focus:ring focus:ring-[#6C5CE7] focus:ring-opacity-50" />
+            </div>
+          </div>
+          <div class="flex justify-end space-x-3">
+            <button type="button" onclick="closeModal('researchModal')" class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50">
+              Cancel
+            </button>
+            <button type="submit" class="px-4 py-2 bg-[#6C5CE7] text-white rounded-md hover:bg-[#6C5CE7]/90">
+              Save Changes
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="projectsModal" class="modal">
+      <div class="bg-white rounded-lg p-6 max-w-md w-full mx-4">
+        <div class="flex justify-between items-center mb-4">
+          <h3 class="text-lg font-semibold">Edit Academic Projects</h3>
+          <button onclick="closeModal('projectsModal')" class="text-gray-500 hover:text-gray-700">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+        <form class="space-y-4" onsubmit="handleFormSubmit(event, 'projects')">
+          <div class="space-y-4">
+            <div>
+              <input type="text" name="project1Title" value="AI-Powered Health Monitoring System" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#FF6F3C] focus:ring focus:ring-[#FF6F3C] focus:ring-opacity-50" />
+              <textarea name="project1Description" class="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#FF6F3C] focus:ring focus:ring-[#FF6F3C] focus:ring-opacity-50" rows="2">Developed a real-time health monitoring system using Python and TensorFlow</textarea>
+              <input type="text" name="project1Tech" value="Python, TensorFlow, React" placeholder="Technologies (comma-separated)" class="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#FF6F3C] focus:ring focus:ring-[#FF6F3C] focus:ring-opacity-50" />
+            </div>
+            <div>
+              <input type="text" name="project2Title" value="Smart City Traffic Management" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#FF6F3C] focus:ring focus:ring-[#FF6F3C] focus:ring-opacity-50" />
+              <textarea name="project2Description" class="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#FF6F3C] focus:ring focus:ring-[#FF6F3C] focus:ring-opacity-50" rows="2">IoT-based traffic management system with real-time analytics</textarea>
+              <input type="text" name="project2Tech" value="IoT, Node.js, MongoDB" placeholder="Technologies (comma-separated)" class="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#FF6F3C] focus:ring focus:ring-[#FF6F3C] focus:ring-opacity-50" />
+            </div>
+          </div>
+          <div class="flex justify-end space-x-3">
+            <button type="button" onclick="closeModal('projectsModal')" class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50">
+              Cancel
+            </button>
+            <button type="submit" class="px-4 py-2 bg-[#FF6F3C] text-white rounded-md hover:bg-[#FF6F3C]/90">
+              Save Changes
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="internshipsModal" class="modal">
+      <div class="bg-white rounded-lg p-6 max-w-md w-full mx-4">
+        <div class="flex justify-between items-center mb-4">
+          <h3 class="text-lg font-semibold">Edit Internships</h3>
+          <button onclick="closeModal('internshipsModal')" class="text-gray-500 hover:text-gray-700">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+        <form class="space-y-4" onsubmit="handleFormSubmit(event, 'internships')">
+          <div class="space-y-4">
+            <div>
+              <input type="text" name="internship1Title" value="Software Engineer Intern" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#27AE60] focus:ring focus:ring-[#27AE60] focus:ring-opacity-50" />
+              <input type="text" name="internship1Company" value="Google - Summer 2023" class="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#27AE60] focus:ring focus:ring-[#27AE60] focus:ring-opacity-50" />
+              <textarea name="internship1Description" class="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#27AE60] focus:ring focus:ring-[#27AE60] focus:ring-opacity-50" rows="2">Worked on machine learning infrastructure team</textarea>
+            </div>
+            <div>
+              <input type="text" name="internship2Title" value="Research Intern" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#27AE60] focus:ring focus:ring-[#27AE60] focus:ring-opacity-50" />
+              <input type="text" name="internship2Company" value="Microsoft Research - Winter 2022" class="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#27AE60] focus:ring focus:ring-[#27AE60] focus:ring-opacity-50" />
+              <textarea name="internship2Description" class="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#27AE60] focus:ring focus:ring-[#27AE60] focus:ring-opacity-50" rows="2">Contributed to NLP research projects</textarea>
+            </div>
+          </div>
+          <div class="flex justify-end space-x-3">
+            <button type="button" onclick="closeModal('internshipsModal')" class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50">
+              Cancel
+            </button>
+            <button type="submit" class="px-4 py-2 bg-[#27AE60] text-white rounded-md hover:bg-[#27AE60]/90">
+              Save Changes
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="skillsModal" class="modal">
+      <div class="bg-white rounded-lg p-6 max-w-md w-full mx-4">
+        <div class="flex justify-between items-center mb-4">
+          <h3 class="text-lg font-semibold">Edit Skills & Certifications</h3>
+          <button onclick="closeModal('skillsModal')" class="text-gray-500 hover:text-gray-700">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+        <form class="space-y-4" onsubmit="handleFormSubmit(event, 'skills')">
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Programming Languages</label>
+            <input type="text" name="programmingLanguages" value="Python, Java, C++, JavaScript" placeholder="Comma-separated list" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#3498DB] focus:ring focus:ring-[#3498DB] focus:ring-opacity-50" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Technologies</label>
+            <input type="text" name="technologies" value="React, Node.js, TensorFlow, Docker" placeholder="Comma-separated list" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#3498DB] focus:ring focus:ring-[#3498DB] focus:ring-opacity-50" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Certifications</label>
+            <input type="text" name="certification1" value="AWS Certified Solutions Architect" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#3498DB] focus:ring focus:ring-[#3498DB] focus:ring-opacity-50" />
+            <input type="text" name="certification2" value="Google TensorFlow Developer" class="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#3498DB] focus:ring focus:ring-[#3498DB] focus:ring-opacity-50" />
+          </div>
+          <div class="flex justify-end space-x-3">
+            <button type="button" onclick="closeModal('skillsModal')" class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50">
+              Cancel
+            </button>
+            <button type="submit" class="px-4 py-2 bg-[#3498DB] text-white rounded-md hover:bg-[#3498DB]/90">
+              Save Changes
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="extracurricularModal" class="modal">
+      <div class="bg-white rounded-lg p-6 max-w-md w-full mx-4">
+        <div class="flex justify-between items-center mb-4">
+          <h3 class="text-lg font-semibold">Edit Extracurricular Activities</h3>
+          <button onclick="closeModal('extracurricularModal')" class="text-gray-500 hover:text-gray-700">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+        <form class="space-y-4" onsubmit="handleFormSubmit(event, 'extracurricular')">
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Competitive Programming</label>
+            <input type="text" name="leetcode" value="LeetCode Rating: 2100+" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#FF6F3C] focus:ring focus:ring-[#FF6F3C] focus:ring-opacity-50" />
+            <input type="text" name="codechef" value="CodeChef 5★ Coder" class="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#FF6F3C] focus:ring focus:ring-[#FF6F3C] focus:ring-opacity-50" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Leadership Roles</label>
+            <input type="text" name="role1" value="President, Computer Science Club" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#FF6F3C] focus:ring focus:ring-[#FF6F3C] focus:ring-opacity-50" />
+            <input type="text" name="role2" value="Organizer, Annual Hackathon 2023" class="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#FF6F3C] focus:ring focus:ring-[#FF6F3C] focus:ring-opacity-50" />
+          </div>
+          <div class="flex justify-end space-x-3">
+            <button type="button" onclick="closeModal('extracurricularModal')" class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50">
+              Cancel
+            </button>
+            <button type="submit" class="px-4 py-2 bg-[#FF6F3C] text-white rounded-md hover:bg-[#FF6F3C]/90">
+              Save Changes
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="universitiesModal" class="modal">
+      <div class="bg-white rounded-lg p-6 max-w-md w-full mx-4">
+        <div class="flex justify-between items-center mb-4">
+          <h3 class="text-lg font-semibold">Edit Target Universities</h3>
+          <button onclick="closeModal('universitiesModal')" class="text-gray-500 hover:text-gray-700">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+        <form class="space-y-4" onsubmit="handleFormSubmit(event, 'universities')">
+          <div class="space-y-4">
+            <div>
+              <input type="text" name="university1" value="Stanford University" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#6C5CE7] focus:ring focus:ring-[#6C5CE7] focus:ring-opacity-50" />
+              <input type="text" name="program1" value="MS in Computer Science" class="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#6C5CE7] focus:ring focus:ring-[#6C5CE7] focus:ring-opacity-50" />
+              <select name="status1" class="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#6C5CE7] focus:ring focus:ring-[#6C5CE7] focus:ring-opacity-50">
+                <option value="applied">Applied</option>
+                <option value="deadline">Deadline Approaching</option>
+                <option value="progress">In Progress</option>
+              </select>
+            </div>
+            <div>
+              <input type="text" name="university2" value="MIT" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#6C5CE7] focus:ring focus:ring-[#6C5CE7] focus:ring-opacity-50" />
+              <input type="text" name="program2" value="MS in AI" class="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#6C5CE7] focus:ring focus:ring-[#6C5CE7] focus:ring-opacity-50" />
+              <select name="status2" class="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#6C5CE7] focus:ring focus:ring-[#6C5CE7] focus:ring-opacity-50">
+                <option value="deadline">Deadline Approaching</option>
+                <option value="applied">Applied</option>
+                <option value="progress">In Progress</option>
+              </select>
+            </div>
+            <div>
+              <input type="text" name="university3" value="UC Berkeley" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#6C5CE7] focus:ring focus:ring-[#6C5CE7] focus:ring-opacity-50" />
+              <input type="text" name="program3" value="MS in Data Science" class="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#6C5CE7] focus:ring focus:ring-[#6C5CE7] focus:ring-opacity-50" />
+              <select name="status3" class="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#6C5CE7] focus:ring focus:ring-[#6C5CE7] focus:ring-opacity-50">
+                <option value="progress">In Progress</option>
+                <option value="applied">Applied</option>
+                <option value="deadline">Deadline Approaching</option>
+              </select>
+            </div>
+          </div>
+          <div class="flex justify-end space-x-3">
+            <button type="button" onclick="closeModal('universitiesModal')" class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50">
+              Cancel
+            </button>
+            <button type="submit" class="px-4 py-2 bg-[#6C5CE7] text-white rounded-md hover:bg-[#6C5CE7]/90">
+              Save Changes
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      lucide.createIcons();
+
+        function openModal(modalId) {
+        document.getElementById(modalId).classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal(modalId) {
+        document.getElementById(modalId).classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+
+      window.onclick = function(event) {
+        if (event.target.classList.contains('modal')) {
+          event.target.classList.remove('active');
+          document.body.style.overflow = 'auto';
+        }
+      }
+
+        function handleImageUpload(event) {
+        const file = event.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            document.querySelectorAll('.profile-image').forEach(img => {
+              img.src = e.target.result;
+            });
+          };
+          reader.readAsDataURL(file);
+          closeModal('profilePicModal');
+        }
+      }
+
+      function handleFormSubmit(event, formType) {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        const data = Object.fromEntries(formData);
+        console.log(`Saving ${formType} data:`, data);
+        closeModal(`${formType}Modal`);
+      }
+    </script>
+  </body>
+</html>

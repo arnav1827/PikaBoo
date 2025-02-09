@@ -1,0 +1,66 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examentor Platform Sign In</title>
+    <link rel="stylesheet" href="{% static css/jee1.css %}">
+    <link rel="stylesheet" href="{% static css/signin.css %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="signup-container">
+            <div class="left-panel">
+                <div class="overlay">
+                    <h2>Welcome Back to</h2>
+                    <h1>Examentor</h1>
+                    <p>Welcome Back, Future Topper!</p>
+                </div>
+            </div>
+            <div class="right-panel">
+                <div class="form-header">
+                    <h2>Sign In</h2>
+                    <p>Access your account</p>
+                </div>
+
+                <form id="signinForm">{% csrf_token %}
+                    <div class="form-group">
+                        <div class="input-group">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="email" name="email" placeholder="Email Address" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="input-group">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="password" name="password" placeholder="Password" required>
+                            <i class="fas fa-eye-slash password-toggle" style="margin-left: 31.5rem;"></i>
+                        </div>
+                    </div>
+
+                    <div class="form-options">
+                        <label class="remember-me">
+                            <input type="checkbox" id="remember" name="remember">
+                            <span>Remember me</span>
+                        </label>
+                        <a href="/auth/request-reset-email" class="forgot-password">Forgot Password?</a>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <span>Sign In</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </form>
+
+                <div class="form-footer">
+                    <p>Don't have an account? <a href="/auth/signup">Sign Up</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./static/js/jee1.js"></script>
+</body>
+</html>

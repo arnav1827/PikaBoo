@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Master's Preparation Portal</title>
+  <link href="{% static css/masterdashboard.css %}" rel="stylesheet">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  
+</head>
+<body>
+
+  <div class="sidebar">
+    <div class="logo">
+      <i class='bx bxs-graduation'></i>
+      <span>Examentor</span>
+    </div>
+    <ul class="nav-links">
+      <li class="active">
+        <a href="#" data-page="dashboard.html">
+          <i class='bx bxs-dashboard'></i>
+          <span>Dashboard</span>
+        </a>
+      </li>
+      <li>
+        <a href="#" data-page="profile_masters.html">
+          <i class='bx bxs-user'></i>
+          <span>Profile</span>
+        </a>
+      </li>
+      <li>
+        <a href="#" data-page="profile_masters.html">
+          <i class='bx bxs-bot'></i>
+          <span>Personal Assistance</span>
+        </a>
+      </li>
+      <li>
+        <a href="/profile_masters.html" data-page="profile_masters.html">
+          <i class='bx bxs-file'></i>
+          <span>Test series</span>
+        </a>
+      </li>
+      <li>
+        <a href="/reports.html" data-page="reports.html">
+          <i class='bx bxs-pie-chart-alt-2'></i>
+          <span>Reports</span>
+        </a>
+      </li>
+      <li>
+        <a href="/analysis.html" data-page="analysisJEE.html">
+          <i class='bx bxs-bar-chart-alt-2'></i>
+          <span>Analysis</span>
+        </a>
+      </li>
+      <li>
+        <a href="#settings">
+          <i class='bx bxs-cog'></i>
+          <span>Settings</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="main-content">
+    <div class="top-bar">
+      <div class="search-bar">
+        <i class='bx bx-search'></i>
+        <input type="text" placeholder="Search universities, programs...">
+      </div>
+      <div class="user-info">
+        
+        <div class="user">
+          <img src="./user.jpg" alt="User">
+          <span>Samarth Nagpal</span>
+          <i class='bx bx-chevron-down'></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="dashboard">
+      <div class="welcome-card">
+        <div class="welcome-text">
+          <h1>Welcome back, Samarth! 👋</h1>
+          <p>Track your application progress and stay organized.</p>
+        </div>
+        <div class="date-time">
+          <span id="current-time">12:30 PM</span>
+          <span id="current-date">March 20, 2024</span>
+        </div>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon" style="background: rgba(255, 99, 132, 0.2)">
+            <i class='bx bxs-graduation' style="color: #FF6384"></i>
+          </div>
+          <div class="stat-info">
+            <h3>JEE score</h3>
+            <h2>250</h2>
+            <p class="trend positive">Target: 300</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background: rgba(54, 162, 235, 0.2)">
+            <i class='bx bxs-book-open' style="color: #36A2EB"></i>
+          </div>
+          <div class="stat-info">
+            <h3>Applications</h3>
+            <h2>8</h2>
+            <p>3 Submitted</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background: rgba(255, 159, 64, 0.2)">
+            <i class='bx bxs-file-doc' style="color: #FF9F40"></i>
+          </div>
+          <div class="stat-info">
+            <h3>Research Papers</h3>
+            <h2>2</h2>
+            <p class="trend positive">1 Published</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background: rgba(75, 192, 192, 0.2)">
+            <i class='bx bxs-medal' style="color: #4BC0C0"></i>
+          </div>
+          <div class="stat-info">
+            <h3>Scholarships</h3>
+            <h2>5</h2>
+            <p>2 Applied</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="dashboard-grid">
+        <div class="dashboard-card tasks">
+          <div class="card-header">
+            <h2>Reminder Section</h2>
+            <button class="view-all">View All</button>
+          </div>
+          <div class="task-list">
+            <div class="task-item">
+              <div class="task-info">
+                <h4>Revision of chemistry notes</h4>
+                <p>Due in 2 days</p>
+              </div>
+              <span class="priority high">High Priority</span>
+            </div>
+            <div class="task-item">
+              <div class="task-info">
+                <h4>Learning periodic table</h4>
+                <p>Due in 5 days</p>
+              </div>
+              <span class="priority medium">Medium Priority</span>
+            </div>
+            <div class="task-item">
+              <div class="task-info">
+                <h4>JEE registration</h4>
+                <p>Due in 1 week</p>
+              </div>
+              <span class="priority low">Low Priority</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-card progress">
+          <div class="card-header">
+            <h2>Preparation Progress</h2>
+            <button class="view-all">View Details</button>
+          </div>
+          <div class="progress-list">
+            <div class="progress-item">
+              <div class="progress-info">
+                <h4>Test Preparation</h4>
+                <span>80%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 80%"></div>
+              </div>
+            </div>
+            <div class="progress-item">
+              <div class="progress-info">
+                <h4>Research Work</h4>
+                <span>65%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 65%"></div>
+              </div>
+            </div>
+            <div class="progress-item">
+              <div class="progress-info">
+                <h4>University Selection</h4>
+                <span>90%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 90%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-card activity">
+          <div class="card-header">
+            <h2>Recent Activity</h2>
+            <button class="view-all">View All</button>
+          </div>
+          <div class="activity-list">
+            <div class="activity-item">
+              <div class="activity-icon">
+                <i class='bx bxs-file-pdf'></i>
+              </div>
+              <div class="activity-info">
+                <h4>Application Submitted</h4>
+                <p>VIT</p>
+                <span>2 hours ago</span>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-icon">
+                <i class='bx bxs-badge-check'></i>
+              </div>
+              <div class="activity-info">
+                <h4>Test Score Received</h4>
+                <p>JEE: 250/300</p>
+                <span>2 days ago</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-card calendar">
+          <div class="card-header">
+            <h2>Important Dates</h2>
+            <button class="view-all">Full Calendar</button>
+          </div>
+          <div class="calendar-events">
+            <div class="event-item">
+              <div class="event-date">
+                <span class="day">22</span>
+                <span class="month">MAR</span>
+              </div>
+              <div class="event-info">
+                <h4>JEE Deadline</h4>
+                <p><i class='bx bxs-time'></i> 11:59 PM EST</p>
+              </div>
+            </div>
+            <div class="event-item">
+              <div class="event-date">
+                <span class="day">25</span>
+                <span class="month">MAR</span>
+              </div>
+              <div class="event-info">
+                <h4>Full syllabus test</h4>
+                <p><i class='bx bxs-time'></i> 9:00 AM - 12:00 PM</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://public.tableau.com/javascripts/api/tableau-2.min.js" async defer></script>
+  <script src="./static/js/masterdashboard.js"></script>
+</body>
+</html>

@@ -46,8 +46,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "auth",
+    "authapp",
     "app",
+    "tts_app",
 ]
 
 MIDDLEWARE = [
@@ -131,6 +132,9 @@ EMAIL_HOST_USER = "info.no.reply.ai@gmail.com"
 EMAIL_HOST_PASSWORD = "hqoemckezjkhphws"
 EMAIL_USE_TLS = True
 EMAIL_BACKEND = "django.core.mail.backend.smtp.EmailBackend"
+
+# Openai API key
+OPENAI_API_KEY = ""
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/

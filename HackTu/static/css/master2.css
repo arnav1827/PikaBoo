@@ -1,0 +1,273 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #2D3250;
+    --primary-light: #3d4369;
+    --text-color: #333;
+    --border-color: #e1e1e1;
+    --white: #ffffff;
+    --shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    --transition: all 0.3s ease;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 2rem;
+    perspective: 1000px;
+}
+
+.signup-container {
+    background-color: var(--white);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    display: flex;
+    overflow: hidden;
+    min-height: 600px;
+    transform-style: preserve-3d;
+    transition: var(--transition);
+}
+
+.signup-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.left-panel {
+    flex: 1;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+    padding: 4rem 3rem;
+    color: var(--white);
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.left-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&q=80') center/cover;
+    opacity: 0.1;
+}
+
+.overlay {
+    position: relative;
+    z-index: 1;
+}
+
+.left-panel h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 1rem 0;
+    line-height: 1.2;
+}
+
+.left-panel h2 {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.left-panel p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.right-panel {
+    flex: 1.2;
+    padding: 4rem 3rem;
+    background: var(--white);
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.form-header h2 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.form-header p {
+    color: #666;
+}
+
+.platform-selector {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+}
+
+.platform-btn {
+    flex: 1;
+    padding: 1rem;
+    border: 2px solid var(--primary-color);
+    background: transparent;
+    color: var(--primary-color);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.platform-btn i {
+    font-size: 1.2rem;
+}
+
+.platform-btn:hover {
+    background-color: var(--primary-light);
+    border-color: var(--primary-light);
+    color: var(--white);
+}
+
+.platform-btn.active {
+    background-color: var(--primary-color);
+    color: var(--white);
+    transform: scale(1.02);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-group i {
+    position: absolute;
+    left: 1rem;
+    color: #666;
+    transition: var(--transition);
+}
+
+.input-group input {
+    width: 100%;
+    padding: 1rem 1rem 1rem 3rem;
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: var(--transition);
+    background-color: #f8f9fa;
+}
+
+/* Updated padding for password field to prevent icon overlap */
+.input-group input[type="password"] {
+    padding-right: 3rem;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background-color: var(--white);
+}
+
+.input-group input:focus + i {
+    color: var(--primary-color);
+}
+
+.password-toggle {
+    position: absolute;
+    right: 1rem;
+    cursor: pointer;
+    color: #666;
+    z-index: 2; /* Added z-index to ensure it's above the input */
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 1rem;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.submit-btn:hover {
+    background-color: var(--primary-light);
+    transform: translateY(-2px);
+}
+
+.submit-btn i {
+    transition: var(--transition);
+}
+
+.submit-btn:hover i {
+    transform: translateX(5px);
+}
+
+.form-footer {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.form-footer a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.form-footer a:hover {
+    color: var(--primary-light);
+}
+
+@media (max-width: 968px) {
+    .left-panel {
+        display: none;
+    }
+    
+    .right-panel {
+        flex: 1;
+    }
+    
+    .container {
+        margin: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .right-panel {
+        padding: 2rem 1.5rem;
+    }
+    
+    .platform-selector {
+        flex-direction: column;
+    }
+}

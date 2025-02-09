@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M.Tech Analysis Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            background-color: #f3f4f6;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+        }
+        .chart-container {
+            background: white;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 16px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 45%;
+            display: inline-block;
+            vertical-align: top;
+            height: 300px;
+        }
+        canvas {
+            height: 250px !important;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #2D3250;
+        }
+        .pdf-button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #2D3250;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .pdf-button:hover {
+            background-color: #1a202c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>M.Tech Analysis Dashboard</h1>
+        <div class="charts-wrapper">
+            <div class="chart-container">
+                <h2>Engineering Mathematics</h2>
+                <canvas id="mathChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h2>Control Systems</h2>
+                <canvas id="controlChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h2>Digital Electronics</h2>
+                <canvas id="digitalChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h2>Signals & Systems</h2>
+                <canvas id="signalsChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h2>General Aptitude</h2>
+                <canvas id="aptitudeChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h2>Mock Test Performance</h2>
+                <canvas id="mockTestChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h2>Time Management Analysis</h2>
+                <canvas id="timeChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h2>Weak & Strong Areas</h2>
+                <canvas id="strengthChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h2>Trend Analysis</h2>
+                <canvas id="trendChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h2>GATE Score Comparison</h2>
+                <canvas id="comparisonChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const chartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        };
+
+        new Chart(document.getElementById('mathChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Linear Algebra', 'Calculus', 'Probability'],
+                datasets: [{ label: 'Accuracy %', data: [85, 78, 90], backgroundColor: '#8884d8' }]
+            },
+            options: chartOptions
+        });
+
+        new Chart(document.getElementById('controlChart'), {
+            type: 'line',
+            data: {
+                labels: ['Stability', 'Frequency Response', 'State Space Analysis'],
+                datasets: [{ label: 'Performance %', data: [75, 82, 88], borderColor: '#00C49F', fill: false }]
+            },
+            options: chartOptions
+        });
+
+        new Chart(document.getElementById('digitalChart'), {
+            type: 'pie',
+            data: {
+                labels: ['Combinational Logic', 'Sequential Logic', 'Microprocessors'],
+                datasets: [{ data: [30, 40, 30], backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'] }]
+            },
+            options: chartOptions
+        });
+
+        new Chart(document.getElementById('signalsChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Fourier Transform', 'Laplace Transform', 'Z-Transform'],
+                datasets: [{ label: 'Accuracy %', data: [70, 75, 80], backgroundColor: '#82ca9d' }]
+            },
+            options: chartOptions
+        });
+
+        new Chart(document.getElementById('aptitudeChart'), {
+            type: 'line',
+            data: {
+                labels: ['Quantitative', 'Logical Reasoning', 'Verbal Ability'],
+                datasets: [{ label: 'Performance %', data: [78, 85, 90], borderColor: '#FF8042', fill: false }]
+            },
+            options: chartOptions
+        });
+
+        new Chart(document.getElementById('mockTestChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Mock 1', 'Mock 2', 'Mock 3', 'Mock 4'],
+                datasets: [{ label: 'Scores', data: [250, 270, 290, 300], backgroundColor: '#FF9F40' }]
+            },
+            options: chartOptions
+        });
+
+        new Chart(document.getElementById('timeChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Math', 'Control Systems', 'Aptitude'],
+                datasets: [{ label: 'Average Time (mins)', data: [45, 35, 30], backgroundColor: '#4BC0C0' }]
+            },
+            options: chartOptions
+        });
+
+        new Chart(document.getElementById('strengthChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Strong Areas', 'Weak Areas'],
+                datasets: [{ data: [60, 40], backgroundColor: ['#36A2EB', '#FF6384'] }]
+            },
+            options: chartOptions
+        });
+
+        new Chart(document.getElementById('trendChart'), {
+            type: 'line',
+            data: {
+                labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                datasets: [{ label: 'Score Trend', data: [240, 260, 280, 300], borderColor: '#9966FF', fill: false }]
+            },
+            options: chartOptions
+        });
+
+        new Chart(document.getElementById('comparisonChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Your Score', 'Average GATE Score'],
+                datasets: [{ label: 'Comparison', data: [300, 250], backgroundColor: ['#FF6384', '#36A2EB'] }]
+            },
+            options: chartOptions
+        });
+    </script>
+</body>
+</html>

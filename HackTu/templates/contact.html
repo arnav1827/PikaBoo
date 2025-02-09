@@ -1,0 +1,102 @@
+{% load static %}
+
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Contact</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href="{% static 'css/jee1.css' %}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+          <div class="logo">Examentor</div>
+          
+          <div class="nav-links">
+            <button class="nav-link" onclick="window.location.href='index.html'">Home</button>
+            <button onclick="scrollToSection('pricing')" class="nav-link">Pricing</button>
+            <button onclick="window.location.href='contact.html'" class="nav-link">Contact</button>
+            <div class="auth-buttons">
+              <button onclick="openModal('loginModal')" class="login-btn">Log In</button>
+              <button onclick="openModal('signupModal')" class="signup-btn">Sign Up</button>
+            </div>
+          </div>
+  
+          <!-- <button class="mobile-menu-btn" onclick="toggleMenu()">
+            <i data-lucide="menu" id="menuIcon"></i>
+            <i data-lucide="x" id="closeIcon" class="hidden"></i>
+          </button> -->
+        </div>
+  <!-- 
+        <div class="mobile-menu hidden" id="mobileMenu">
+          <button onclick="scrollToSection('features')" class="mobile-link">Features</button>
+          <button onclick="scrollToSection('pricing')" class="mobile-link">Pricing</button>
+          <button onclick="scrollToSection('contact')" class="mobile-link">Contact</button>
+          <button onclick="openModal('loginModal')" class="mobile-link">Log In</button>
+          <button onclick="openModal('signupModal')" class="mobile-link">Sign Up</button>
+        </div> -->
+      </nav>
+    <div id="contact" class="contact-page hidden">
+        <div class="container">
+          <div class="contact-container">
+            <h2>Get in Touch</h2>
+            <p class="text-center mb-8">Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+            
+            <form onsubmit="handleContactSubmit(event)" class="space-y-6">{% csrf_token %}
+              <div class="form-group">
+                <label for="contactName">Name</label>
+                <input type="text" id="contactName" required>
+              </div>
+              <div class="form-group">
+                <label for="contactEmail">Email</label>
+                <input type="email" id="contactEmail" required>
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" rows="8" cols="80" required></textarea>
+              </div>
+              <button type="submit" class="cta1-btn">Send Message</button>
+            </form>
+            
+            
+          </div>
+        </div>
+      </div>
+      <footer class="footer">
+        <div class="container">
+          <div class="footer-grid">
+            <div class="footer-section">
+              <h3>Examentor</h3>
+              <p>Your trusted partner in JEE and engineering exam preparation.</p>
+            </div>
+            <div class="footer-section">
+              <h4>Quick Links</h4>
+              <ul>
+                <li><button onclick="scrollToSection('features')">Features</button></li>
+                <li><button onclick="scrollToSection('pricing')">Pricing</button></li>
+                <li><button onclick="window.location.href='contact.html'">Contact</button></li>
+              </ul>
+            </div>
+            <div class="footer-section">
+              <h4>Contact</h4>
+              <p>support@Examentor.com</p>
+              <p>+91 123 456 7890</p>
+            </div>
+            <div class="footer-section">
+              <h4>Follow Us</h4>
+              <div class="social-links">
+                <a href="#"><i data-lucide="linkedin"></i></a>
+                <a href="#"><i data-lucide="twitter"></i></a>
+                <a href="#"><i data-lucide="instagram"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="footer-bottom">
+            <p>© 2025 Examentor. All rights reserved.</p>
+          </div>
+        </div>
+      </footer> 
+<script src="./static/js/jee1.js"></script>
+</body>
+</html>

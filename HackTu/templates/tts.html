@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masterly - AI Accessibility</title>
+</head>
+<body>
+
+    <h2>Speech-to-Text (Whisper AI)</h2>
+    <input type="file" id="audioInput" accept="audio/*">
+    <button onclick="uploadAudio()">Convert Speech to Text</button>
+    <p id="transcription"></p>
+
+    <h2>Text-to-Speech (TTS)</h2>
+    <button onclick="playTTS()">Read Aloud</button>
+
+    <script>
+        function uploadAudio() {
+            let fileInput = document.getElementById("audioInput").files[0];
+            let formData = new FormData();
+            formData.append("audio_file", fileInput);
+
+            fetch("/tts/speech-to-text/", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("transcription").innerText = "Transcription: " + data.transcription;
+            });
+        }
+
+        function playTTS() {
+            let audio = new Audio("/tts/text-to-speech/");
+            audio.play();
+        }
+    </script>
+
+</body>
+</html>
